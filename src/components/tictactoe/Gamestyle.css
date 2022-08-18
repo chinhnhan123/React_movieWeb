@@ -1,0 +1,19 @@
+.game-broad {
+  margin: 25px;
+  width: 500px;
+  height: 500px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 25px;
+}
+
+.game-cell {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 50px;
+  box-shadow: rgba(188, 189, 190, 0.2) 0px 8px 24px;
+}

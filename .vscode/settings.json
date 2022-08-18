@@ -1,0 +1,8 @@
+{
+  "emmet.preferences": {},
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact"
+  },
+  "javascript.suggest.includeCompletionsForImportStatements": true,
+  "javascript.updateImportsOnFileMove.enabled": "prompt"
+}
