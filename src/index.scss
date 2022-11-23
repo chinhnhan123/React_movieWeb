@@ -6,7 +6,7 @@
 //  simple movie
 @layer base {
   body {
-    @apply bg-slate-200 font-body px-5;
+    @apply bg-slate-900 font-body px-5 text-slate-100;
   }
 }
 
@@ -22,5 +22,15 @@
   }
   .banner .swiper {
     height: 100%;
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  .selected {
+    @apply text-primary;
   }
 }

@@ -4,6 +4,9 @@ import { Fragment } from "react";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import { apiKey, fetcher } from "../components/config";
+import { Swiper } from "swiper/react";
+import { SwiperSlide } from "swiper/react";
+import MovieCard from "./../components/movie/MovieCard";
 
 const MovieDetailPage = () => {
   const { movieId } = useParams();
@@ -55,6 +58,7 @@ const MovieDetailPage = () => {
       </p>
       <MovieCredits></MovieCredits>
       <MovideVideos></MovideVideos>
+      <MovieSimilar></MovieSimilar>
     </div>
   );
 };
@@ -96,9 +100,62 @@ function MovideVideos() {
     fetcher
   );
   if (!data) return null;
-  //<iframe width="942" height="530" src="https://www.youtube.com/embed/XFwF0vjWtCo" title="J Fla Best Cover Songs 2020, J Fla Greatest Hits 2021 Full Album" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  console.log(" video movie ~ data", data);
-  return <div></div>;
+  const { results } = data;
+  if (results.length <= 0 || !results) return null;
+
+  return (
+    <div className="py-10">
+      {results.slice(0, 1).map((item) => (
+        <div key={item.id} className="max-w-5xl p-10 m-auto aspect-video">
+          <iframe
+            width="942"
+            height="530"
+            src={`https://www.youtube.com/embed/${item.key}`}
+            title="J Fla Best Cover Songs 2020, J Fla Greatest Hits 2021 Full Album"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="object-cover w-full h-full"
+          ></iframe>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function MovieSimilar() {
+  const { movieId } = useParams();
+  const { data, error } = useSWR(
+    `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${apiKey}`,
+    fetcher
+  );
+  if (!data) return null;
+  console.log(
+    "🚀 --------------------------------------------------------------------🚀"
+  );
+  console.log(
+    "🚀 ~ file: MovieDetailPage.js ~ line 130 ~ MovieSimilar ~ data",
+    data
+  );
+  console.log(
+    "🚀 --------------------------------------------------------------------🚀"
+  );
+  const { results } = data;
+  if (results.length <= 0 || !results) return null;
+  return (
+    <div className="py-10">
+      <h2 className="mb-10 text-3xl font-bold">Similar movies </h2>
+      <div className="movie-list">
+        <Swiper grabCursor={"true"} spaceBetween={40} slidesPerView={"auto"}>
+          {results.map((item) => (
+            <SwiperSlide key={item.id}>
+              <MovieCard item={item}></MovieCard>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </div>
+  );
 }
 
 export default MovieDetailPage;

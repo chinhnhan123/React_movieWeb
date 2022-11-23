@@ -1,6 +1,35 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
+const Card = (props) => {
+  return (
+    <StyledCard>
+      <CardImage>
+        <CardImg
+          src="https://cdn.dribbble.com/users/2400293/screenshots/16378193/media/e9ad5ebe9dd6822be9ee622c7465d9e5.png?compress=1&resize=400x300&vertical=top"
+          alt=""
+        />
+      </CardImage>
+      <CardContent>
+        <CardTop>
+          <CardUser>
+            <UserAvatar
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrZNG2V1kv_IH_8aTfCrLyEYKVDuCeuKoHaQ&usqp=CAU"
+              alt=""
+            />
+            <UserName>Nhan map</UserName>
+          </CardUser>
+          <div>256</div>
+        </CardTop>
+        <CardFooter>
+          <CardTitle>cosmic perspective</CardTitle>
+          <CardAmount secondary={props.secondary}> 12,000 PSL</CardAmount>
+        </CardFooter>
+      </CardContent>
+    </StyledCard>
+  );
+};
+
 const StyledCard = styled.div`
   position: relative;
   width: 400px;
@@ -93,33 +122,5 @@ const CardAmount = styled.span`
   -webkit-background-clip: text;
   background-clip: text;
 `;
-const Card = (props) => {
-  return (
-    <StyledCard>
-      <CardImage>
-        <CardImg
-          src="https://cdn.dribbble.com/users/2400293/screenshots/16378193/media/e9ad5ebe9dd6822be9ee622c7465d9e5.png?compress=1&resize=400x300&vertical=top"
-          alt=""
-        />
-      </CardImage>
-      <CardContent>
-        <CardTop>
-          <CardUser>
-            <UserAvatar
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrZNG2V1kv_IH_8aTfCrLyEYKVDuCeuKoHaQ&usqp=CAU"
-              alt=""
-            />
-            <UserName>Nhan map</UserName>
-          </CardUser>
-          <div>256</div>
-        </CardTop>
-        <CardFooter>
-          <CardTitle>cosmic perspective</CardTitle>
-          <CardAmount secondary={props.secondary}> 12,000 PSL</CardAmount>
-        </CardFooter>
-      </CardContent>
-    </StyledCard>
-  );
-};
 
 export default Card;
